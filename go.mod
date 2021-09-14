@@ -1,5 +1,5 @@
-module github.com/kobilov-web-dev/stats
+module github.com/kobilov-web-dev/stats/v2
 
 go 1.17
 
-require github.com/kobilov-web-dev/bank v0.0.0-20210913165029-4143653255d0
+require github.com/kobilov-web-dev/bank/v2 v2.0.0

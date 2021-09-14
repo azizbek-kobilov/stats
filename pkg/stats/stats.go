@@ -1,22 +1,28 @@
 package stats
 
 import (
-	"github.com/kobilov-web-dev/bank/pkg/types"
+	"github.com/kobilov-web-dev/bank/v2/pkg/types"
 )
 
 func Avg(payments []types.Payment) types.Money {
 	sum := types.Money(0)
+	count := 0
 	for _, payment := range payments {
-		sum += payment.Amount
+		if payment.Status != "FAIL" {
+			sum += payment.Amount
+			count++
+		}
 	}
-	return sum / types.Money(len(payments))
+	return sum / types.Money(count)
 }
 
 func TotalInCategory(payments []types.Payment, category types.Category) types.Money {
 	sum := types.Money(0)
 	for _, payment := range payments {
 		if payment.Category == category {
-			sum += payment.Amount
+			if payment.Status != "FAIL" {
+				sum += payment.Amount
+			}
 		}
 	}
 	return sum
